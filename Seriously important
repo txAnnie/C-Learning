@@ -1,0 +1,61 @@
+// Binsearch.cpp : 定义控制台应用程序的入口点。
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+	int BinSrch(vector<int> nums,int low,int high,int n) {
+		int res;
+		int l = low;
+		int h = high;
+		int mid = (h + l) / 2;
+		if (l > h)
+			return 0;
+		if (n == nums[mid]) {
+			return mid;
+		}
+		else if (n < nums[mid]) {
+			return BinSrch(nums, l, mid - 1, n);
+		}
+		else if (n > nums[mid]) {
+			return BinSrch(nums, mid + 1, h, n);
+		}
+		
+	}
+};
+
+int main()
+{
+	Solution s;
+	vector<int> nums ;
+	int num;
+	cout << "--BinSearch--\n" << endl << "Input numbers:" << endl;
+  
+  
+ //*****here******: 
+ 
+	while(cin>>num){
+		nums.push_back(num);  //按ctrl+z结束输入
+	}
+	cin.clear();  ////清除错误状态 
+	cin.ignore(); //跳过无效数据
+	//加入这两句后才可以在后面继续cin>>n，否则直接停止
+	int n;
+	cout << "Input numbers:" << endl;
+	cin >> n;
+  
+  //***************
+  
+	int h = nums.size() - 1;
+	int l = 0;
+	int res;
+	res = s.BinSrch(nums, l, h, n);
+	cout <<"Output:"<< res << endl;
+    return 0;
+}
+
